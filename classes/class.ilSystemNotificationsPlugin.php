@@ -113,7 +113,7 @@ class ilSystemNotificationsPlugin extends ilUserInterfaceHookPlugin {
 
 
 	protected function loadActiveRecord() {
-		$ar_file = self::AR_SER;
+		//$ar_file = self::AR_SER;
 		if (!is_file($ar_file)) {
 			$ar_file = self::AR_CUST;
 		}
