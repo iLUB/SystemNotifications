@@ -29,6 +29,17 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 	 * @var notMessage
 	 */
 	protected $notMessage;
+	/**
+	 * @var array
+	 */
+	protected static $tags = array(
+		'a',
+		'strong',
+		'ol',
+		'ul',
+		'li',
+		'p',
+	);
 
 
 	/**
@@ -75,6 +86,8 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 		$this->addItem($title);
 
 		$body = new ilTextAreaInputGUI($this->txt(self::F_BODY), self::F_BODY);
+		$body->setUseRte(true);
+		$body->setRteTags(self::$tags);
 		$this->addItem($body);
 
 		$permanent = new ilRadioGroupInputGUI($this->txt(self::F_PERMANENT), self::F_PERMANENT);
@@ -154,13 +167,17 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 		 * @var $f_event_date   ilDateDurationInputGUI
 		 * @var $f_display_date ilDateDurationInputGUI
 		 */
-		$f_event_date = $this->getItemByPostVar(self::F_EVENT_DATE);
-		$f_event_date->setStart(new ilDateTime($this->notMessage->getEventStart(), IL_CAL_UNIX));
-		$f_event_date->setEnd(new ilDateTime($this->notMessage->getEventEnd(), IL_CAL_UNIX));
+		if ($eventStart = $this->notMessage->getEventStart()) {
+			$f_event_date = $this->getItemByPostVar(self::F_EVENT_DATE);
+			$f_event_date->setStart(new ilDateTime($eventStart, IL_CAL_UNIX));
+			$f_event_date->setEnd(new ilDateTime($this->notMessage->getEventEnd(), IL_CAL_UNIX));
+		}
 
-		$f_display_date = $this->getItemByPostVar(self::F_DISPLAY_DATE);
-		$f_display_date->setStart(new ilDateTime($this->notMessage->getDisplayStart(), IL_CAL_UNIX));
-		$f_display_date->setEnd(new ilDateTime($this->notMessage->getDisplayEnd(), IL_CAL_UNIX));
+		if ($displayStart = $this->notMessage->getDisplayStart()) {
+			$f_display_date = $this->getItemByPostVar(self::F_DISPLAY_DATE);
+			$f_display_date->setStart(new ilDateTime($displayStart, IL_CAL_UNIX));
+			$f_display_date->setEnd(new ilDateTime($this->notMessage->getDisplayEnd(), IL_CAL_UNIX));
+		}
 	}
 
 
@@ -168,7 +185,7 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 	 * @return bool
 	 */
 	protected function fillObject() {
-		if (! $this->checkInput()) {
+		if (!$this->checkInput()) {
 			return false;
 		}
 
@@ -226,7 +243,7 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 	 * @return bool false when unsuccessful or int request_id when successful
 	 */
 	public function saveObject() {
-		if (! $this->fillObject()) {
+		if (!$this->fillObject()) {
 			return false;
 		}
 		if ($this->notMessage->getId() > 0) {
@@ -253,7 +270,7 @@ class notMessageFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @param int  $filter
+	 * @param int $filter
 	 * @param bool $with_text
 	 *
 	 * @return array
