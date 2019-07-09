@@ -1,4 +1,4 @@
-@import "../../../../../../../../../Services/UICore/lib/bootstrap-3.2.0/less/variables.less";
+@import "../../../../../../../../../libs/bower/bower_components/bootstrap/less/variables.less";
 
 .alert-link(@text-color) {
   a {
@@ -46,7 +46,17 @@ div.xnot-alert-container-interruptive {
 	box-shadow:         0px 0px 16px 0px rgba(0, 0, 0, 0.75);
   }
 }
+#xnot_container .alert-info a {
+	color: #4e7aa9;
+}
+#xnot_container .alert-info a:hover {
+	color: #3e6186;
+}
 
+.btn, #wayf_submit_button{
+	font-size:16px !important;
+
+}
 @media (max-width: 768px) {
   #xnot_container {
 	.alert {
