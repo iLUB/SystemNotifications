@@ -42,9 +42,8 @@ div.xnot-alert-container-interruptive div.xnot-alert {
 #xnot_container .alert-info a:hover {
   color: #3e6186;
 }
-.btn,
-#wayf_submit_button {
-  font-size: 16px !important;
+.xnot-alert .btn .glyphicon {
+  font-size: 16px;
 }
 @media (max-width: 768px) {
   #xnot_container .alert strong.xnot-title,
