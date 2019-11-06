@@ -38,6 +38,17 @@ var xNotification = {
 			if ($xnot_body_p.length && $xnot_body_p[0].scrollWidth > $xnot_body_p.innerWidth()) {
 				$(this).addClass('xnot-content-hidden');
 			}
+			// adapt if leftNav is open
+			if(document.getElementById("left_nav")){
+				console.log("yes");
+				$(this).addClass("ilLeftNavSpace");
+			}else{
+				console.log("no");
+				$(this).removeClass("ilLeftNavSpace");
+			}
+
+
+
 		});
 	}
 };
