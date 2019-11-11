@@ -40,10 +40,8 @@ var xNotification = {
 			}
 			// adapt if leftNav is open
 			if(document.getElementById("left_nav")){
-				console.log("yes");
 				$(this).addClass("ilLeftNavSpace");
 			}else{
-				console.log("no");
 				$(this).removeClass("ilLeftNavSpace");
 			}
 
