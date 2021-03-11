@@ -52,7 +52,6 @@ div.xnot-alert-container-interruptive div.xnot-alert {
   #xnot_container .alert span.xnot-body,
   #xnot_container .alert span.xnot-body p {
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
     width: auto;
     display: block;
